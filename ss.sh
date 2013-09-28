@@ -13,7 +13,7 @@
 #CONFIG BEGIN
 #############
 
-fileDate=`date +%H.%M.%S`
+fileDate=`date +%x-%H.%M.%S`
 machineName=`hostname`
 fileName="-screenshot.png"
 FILENAME=$fileDate"-"$machineName$fileName
