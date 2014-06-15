@@ -19,5 +19,5 @@ items=( 'paths' 'which you would like' 'to backup' )
 for item in ${items[@]}
 do
         NAME=${item##*/} 
-        rdiff-backup  --force --terminal-verbosity 5 $item $dstUser@$dstHost::$dstPath/$NAME
+        rdiff-backup $item $dstUser@$dstHost::$dstPath/$NAME
 done
