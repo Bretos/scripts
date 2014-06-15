@@ -1,11 +1,11 @@
 #!/bin/bash
-##Requirements: rsync
+##Requirements: rdiff-backup
 #For automated upload it is required to have properly set up RSA key authentication in your system
 #you can specify used key by adding -i option in ssh settings
 #use at your own risk
 #I take no responsibility for burned CPUs or killed dinosaurs
 #improvements neccesary
-#this script violates basic rules of enlightement http://taobackup.com/
+#this script violates some rules of enlightement http://taobackup.com/
 #Distributed under GPLv3 or newer.
 #####
 
@@ -18,5 +18,6 @@ items=( 'paths' 'which you would like' 'to backup' )
 
 for item in ${items[@]}
 do
-        rsync --progress -avz -e ssh $item $dstUser@$dstHost:$dstPath
+        NAME=${item##*/} 
+        rdiff-backup  --force --terminal-verbosity 5 $item $dstUser@$dstHost::$dstPath/$NAME
 done
