@@ -18,12 +18,12 @@
 
 fileDate=`date +%x-%H.%M.%S`
 machineName=`hostname`
-fileName="-screenshot.png"
+fileName=".png"
 FILENAME=$fileDate"-"$machineName$fileName
-dst="127.0.0.1" #your dst. server
-dstPath="ss"
-dstAbs="/var/www/localhost/"
-user="username!"
+dst="dst.tld" #your dst. server
+dstPath="i"
+dstAbs="/var/www/"
+user="$USERNAME"
 
 ###########
 #CONFIG END
@@ -32,6 +32,7 @@ user="username!"
 
 
 #MAIN
+cd /tmp
 scrot -s $FILENAME #Make screenshot and save it as $FILENAME
 scp -C $FILENAME $user@$dst:$dstAbs$dstPath #send screenshot through SCP(with compression enabled for low-bandwith connection) 
 echo "http://"$dst"/"$dstPath"/"$FILENAME | xclip -i -selection clipboard #copy screenshot link to your clipboard
